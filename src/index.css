@@ -29,7 +29,6 @@ body, html {
   border-radius: 8px 8px 0 0;
 }
 
-/* Terra form styles */
 .cv-form {
   padding: 20px;
   border: 1px solid #ddd;
@@ -81,7 +80,6 @@ button:hover {
   background-color: #45a049;
 }
 
-/* Styles specifically for print */
 @media print {
   body, html {
     background-color: white;
@@ -104,10 +102,30 @@ button:hover {
   }
 
   button, .print-btn {
-    display: none; /* Hide print button on the actual print */
+    display: none;
   }
 
-  /* Avoid page breaks inside sections */
+  .form-group input, 
+  .form-group textarea {
+    border: none;
+    background: none;
+    color: black;
+    font-size: 12pt;
+    padding: 0;
+    width: auto;
+    display: inline;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+  .responsibilities .drag-button {
+    display: none;
+  }
+  textarea, input {
+    resize: none;
+  }
+
   .section {
     page-break-inside: avoid;
   }
