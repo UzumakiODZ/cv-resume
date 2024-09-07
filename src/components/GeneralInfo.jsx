@@ -1,47 +1,35 @@
-import React, { useState } from 'react';
-import '../styles/GeneralInfo.css';
+import React from 'react';
 
-const GeneralInfo = ({ info, onEdit, onSubmit }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState(info);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
-
-  const handleSubmit = () => {
-    onSubmit(formData);
-    setIsEditing(false);
-  };
-
+function GeneralInfo({ info, handleInputChange }) {
   return (
-    <div className="general-info">
-      <div class ="sub-head">General Info</div>
-      {isEditing ? (
-        <div>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" />
-          <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" />
-          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone" />
-          <button onClick={handleSubmit}>Submit</button>
-        </div>
-      ) : (
-        <div>
-          
-          <p>Name: {info.name}</p>
-          <p>Email: {info.email}</p>
-          <p>Phone: {info.phone}</p>
-          <button onClick={handleEdit}>Edit</button>
-        </div>
-      )}
+    <div className="section">
+      <h2 className="section-header">General Information</h2>
+      <div className="form-group">
+        <label>Name:</label>
+        <input
+          type="text"
+          value={info.name}
+          onChange={(e) => handleInputChange('generalInfo', 'name', e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Email:</label>
+        <input
+          type="email"
+          value={info.email}
+          onChange={(e) => handleInputChange('generalInfo', 'email', e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Phone:</label>
+        <input
+          type="tel"
+          value={info.phone}
+          onChange={(e) => handleInputChange('generalInfo', 'phone', e.target.value)}
+        />
+      </div>
     </div>
   );
-};
+}
 
 export default GeneralInfo;

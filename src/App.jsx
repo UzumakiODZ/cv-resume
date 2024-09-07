@@ -1,25 +1,24 @@
 import React, { useRef } from 'react';
 import ReactToPrint from 'react-to-print';
 import CVForm from './components/CVForm';
-import './App.css';
+
 
 function App() {
   const componentRef = useRef();
 
   return (
-    <div className="App">
-      <div classname = "info-box"> 
+    <div className="App terra-container">
       <header className="App-header">
-        <h1>CV Application</h1>
+        <h1>Terra CV Builder</h1>
       </header>
       <main>
         <ReactToPrint
-          trigger={() => <button>Print this out!</button>}
+          trigger={() => <button className="print-btn">Print CV</button>}
           content={() => componentRef.current}
+          pageStyle="@media print { body { -webkit-print-color-adjust: exact; } }"
         />
         <CVForm ref={componentRef} />
       </main>
-      </div>
     </div>
   );
 }

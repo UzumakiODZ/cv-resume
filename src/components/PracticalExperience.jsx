@@ -1,50 +1,50 @@
-import React, { useState } from 'react';
-import '../styles/PracticalExperience.css';
+import React from 'react';
 
-const PracticalExperience = ({ experience, onEdit, onSubmit }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState(experience);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
-
-  const handleSubmit = () => {
-    onSubmit(formData);
-    setIsEditing(false);
-  };
-
+function PracticalExperience({ experience, handleInputChange }) {
   return (
-    <div className="practical-experience">
-      <div class ="sub-head">Practical Expereince</div>
-      {isEditing ? (
-        <div>
-          <input type="text" name="company" value={formData.company} onChange={handleChange} placeholder="Company Name" />
-          <input type="text" name="position" value={formData.position} onChange={handleChange} placeholder="Position Title" />
-          <textarea name="responsibilities" value={formData.responsibilities} onChange={handleChange} placeholder="Main Responsibilities" />
-          <input type="text" name="from" value={formData.from} onChange={handleChange} placeholder="From" />
-          <input type="text" name="until" value={formData.until} onChange={handleChange} placeholder="Until" />
-          <button onClick={handleSubmit}>Submit</button>
-        </div>
-      ) : (
-        <div>
-          <p>Company: {experience.company}</p>
-          <p>Position: {experience.position}</p>
-          <p>Responsibilities: {experience.responsibilities}</p>
-          <p>From: {experience.from}</p>
-          <p>Until: {experience.until}</p>
-          <button onClick={handleEdit}>Edit</button>
-        </div>
-      )}
+    <div className="section">
+      <h2 className="section-header">Practical Experience</h2>
+      <div className="form-group">
+        <label>Company:</label>
+        <input
+          type="text"
+          value={experience.company}
+          onChange={(e) => handleInputChange('experience', 'company', e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Position:</label>
+        <input
+          type="text"
+          value={experience.position}
+          onChange={(e) => handleInputChange('experience', 'position', e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Responsibilities:</label>
+        <textarea
+          value={experience.responsibilities}
+          onChange={(e) => handleInputChange('experience', 'responsibilities', e.target.value)}
+        ></textarea>
+      </div>
+      <div className="form-group">
+        <label>From:</label>
+        <input
+          type="date"
+          value={experience.from}
+          onChange={(e) => handleInputChange('experience', 'from', e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Until:</label>
+        <input
+          type="date"
+          value={experience.until}
+          onChange={(e) => handleInputChange('experience', 'until', e.target.value)}
+        />
+      </div>
     </div>
   );
-};
+}
 
 export default PracticalExperience;

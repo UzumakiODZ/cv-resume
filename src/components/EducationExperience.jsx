@@ -1,46 +1,35 @@
-import React, { useState } from 'react';
-import '../styles/EducationExperience.css';
+import React from 'react';
 
-const EducationExperience = ({ education, onEdit, onSubmit }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState(education);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
-
-  const handleSubmit = () => {
-    onSubmit(formData);
-    setIsEditing(false);
-  };
-
+function EducationExperience({ education, handleInputChange }) {
   return (
-    <div className="education-experience">
-      <div class ="sub-head">Education Expereince</div>
-      {isEditing ? (
-        <div>
-          <input type="text" name="school" value={formData.school} onChange={handleChange} placeholder="School Name" />
-          <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Title of Study" />
-          <input type="text" name="date" value={formData.date} onChange={handleChange} placeholder="Date of Study" />
-          <button onClick={handleSubmit}>Submit</button>
-        </div>
-      ) : (
-        <div>
-          <p>School: {education.school}</p>
-          <p>Title: {education.title}</p>
-          <p>Date: {education.date}</p>
-          <button onClick={handleEdit}>Edit</button>
-        </div>
-      )}
+    <div className="section">
+      <h2 className="section-header">Education</h2>
+      <div className="form-group">
+        <label>School:</label>
+        <input
+          type="text"
+          value={education.school}
+          onChange={(e) => handleInputChange('education', 'school', e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Title of Study:</label>
+        <input
+          type="text"
+          value={education.title}
+          onChange={(e) => handleInputChange('education', 'title', e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Date of Study:</label>
+        <input
+          type="date"
+          value={education.date}
+          onChange={(e) => handleInputChange('education', 'date', e.target.value)}
+        />
+      </div>
     </div>
   );
-};
+}
 
 export default EducationExperience;
